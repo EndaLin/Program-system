@@ -1,0 +1,10 @@
+one:1:computer:20:m
+two:2:other_dept:20:g
+three:3:computer:20:m
+four:4:other_dept:20:g
+five:5:computer:20:m
+six:6:other_dept:20:g
+seven:7:computer:20:m
+eight:8:other_dept:20:g
+night:9:computer:20:m
+ten:10:other_dept:20:g
