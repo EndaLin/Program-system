@@ -1,0 +1,132 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include"linker.h"
+#include"sort.h"
+
+extern Student *head;
+void sortAllByClass(enum studentcategory category,char *specialty,char *classes)
+{
+   Student *p1=NULL,*p2=NULL,*max=NULL,*head1=NULL;
+   int flag=0,rank=1;
+   p2=head;
+   while(p2!=NULL){
+	   if(p2->category==category&&strcmp(p2->specialty,specialty)==0&&strcmp(p2->classes,classes)==0){
+	        flag=1;
+			head1=p2;
+			break;
+	   }
+	   p2=p2->next;
+   }
+   if(flag==0){
+       printf("没有找到该类学生的成绩信息，请按任意键继续...\n");
+	   getchar();
+	   getchar();
+	   return;
+   }
+   else {
+        p1=head1;
+		p2=head1;
+		while(p2!=NULL){
+			max=p2;
+		    p1=p2; 
+			while(p1!=NULL){
+			     if(p1->totalscore>max->totalscore&&p1->category==category&&strcmp(p2->specialty,specialty)==0&&strcmp(p2->classes,classes)==0)
+					 max=p1;
+				 p1=p1->next;
+			}
+			max->classrank=rank;
+			exchangeData(p2,max);
+			p2=p2->next;
+			if(p2!=NULL)
+			     while(p2->category!=category&&p2!=NULL&&strcmp(p2->specialty,specialty)!=0&&strcmp(p2->classes,classes)!=0){
+					 p2=p2->next;
+				     if(p2==NULL)break;
+				 }
+            if(p2!=NULL)
+				if(p2->category==category&&p2!=NULL&&strcmp(p2->specialty,specialty)==0&&strcmp(p2->classes,classes)==0)
+					rank++;
+		} 
+		p1=head1->next;
+		p2=head1;
+		while(p1!=NULL){
+			while(p1->category!=category){
+			    p1=p1->next;
+				if(p1==NULL)break;
+			}
+			if(p1==NULL)break;
+			if(p1->totalscore==p2->totalscore){
+			       p1->classrank=p2->classrank;
+			}
+			p2=p1;
+			p1=p1->next;
+		}
+		printf("排序成功，请按任意键继续...\n");
+		getchar();
+		getchar();
+		system("cls");
+   }
+}
+
+void sortAllByCategory(enum studentcategory category)   /*对本科生或者研究生进行排序*/
+{
+   Student *p1=NULL,*p2=NULL,*max=NULL,*head1=NULL;
+   int flag=0,rank=1;
+   p2=head;
+   while(p2!=NULL){
+	   if(p2->category==category){
+	        flag=1;
+			head1=p2;
+			break;
+	   }
+	   p2=p2->next;
+   }
+   if(flag==0){
+       printf("没有找到该类学生的成绩信息，请按任意键继续...\n");
+	   getchar();
+	   getchar();
+	   return;
+   }
+   else {
+        p1=head1;
+		p2=head1;
+		while(p2!=NULL){
+			max=p2;
+		    p1=p2; 
+			while(p1!=NULL){
+			     if(p1->totalscore>max->totalscore&&p1->category==category)
+					 max=p1;
+				 p1=p1->next;
+			}
+			max->schoolrank=rank;
+			exchangeData(p2,max);
+			p2=p2->next;
+			if(p2!=NULL)
+			     while(p2->category!=category){
+					 p2=p2->next;
+					 if(p2==NULL)break;
+				 }
+			if(p2!=NULL)
+				if(p2->category==category)
+					rank++;
+		}
+		p1=head1->next;
+		p2=head1;
+		while(p1!=NULL){
+			while(p1->category!=category){
+			    p1=p1->next;
+				if(p1==NULL)break;
+			}
+			if(p1==NULL)break;
+			if(p1->totalscore==p2->totalscore){
+			       p1->schoolrank=p2->schoolrank;
+			}
+			p2=p1;
+			p1=p1->next;
+		}
+		printf("排序成功，请按任意键继续...\n");
+		getchar();
+		getchar();
+		system("cls");
+   }
+}
