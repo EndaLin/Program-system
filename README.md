@@ -1,4 +1,4 @@
-# C/C++学生信息管理系统
+# C/C++学生信息管理系统、基于OpenCV的车牌识别程序和数据结构相关
 ![GitHub followers](https://img.shields.io/github/followers/wt-git-repository.svg?style=plastic)
 ![GitHub forks](https://img.shields.io/github/forks/wt-git-repository/Program-system.svg?label=forks&style=plastic)
 ![GitHub stars](https://img.shields.io/github/stars/wt-git-repository/Program-system.svg?style=plastic)
